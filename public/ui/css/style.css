@@ -1,0 +1,38 @@
+/* public/ui/css/style.css */
+:root {
+    --tiktok-red: #FE2C55;
+    --tiktok-cyan: #25F4EE;
+    --tiktok-black: #161823;
+}
+
+body {
+    font-family: 'Proxima Nova', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: var(--tiktok-black);
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-thumb {
+    background: #rgba(22, 24, 35, 0.2);
+    border-radius: 3px;
+}
+
+/* 按钮通用样式 */
+.btn-primary {
+    background-color: var(--tiktok-red);
+    color: white;
+    border-radius: 4px; /* TikTok 按钮圆角较小 */
+    font-weight: 700;
+    transition: background 0.2s;
+}
+.btn-primary:hover {
+    background-color: #E6284D;
+}
+
+/* 视频卡片悬停效果 */
+.video-card:hover .play-icon {
+    opacity: 1;
+    transform: scale(1);
+}
