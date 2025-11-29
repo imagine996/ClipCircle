@@ -1,0 +1,10 @@
+{
+    "site_name": "ClipCircle",
+    "nav_home": "Home",
+    "nav_upload": "Upload",
+    "nav_login": "Sign In",
+    "nav_dashboard": "Creator Studio",
+    "btn_search": "Search",
+    "text_no_video": "No videos found",
+    "text_recommend": "Trending"
+}
