@@ -1,0 +1,156 @@
+/* 后台全局样式 */
+:root {
+    --admin-primary: #ec4899; /* 粉色主题色 */
+    --admin-bg: #1e293b;
+    --admin-text: #f1f5f9;
+    --admin-text-light: #cbd5e1;
+    --admin-border: #334155;
+    --admin-hover: #475569;
+    --admin-active: #ec4899;
+    --admin-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
+/* 侧边栏样式 */
+.glass-nav {
+    background: var(--admin-bg);
+    color: var(--admin-text);
+    box-shadow: var(--admin-shadow);
+}
+
+/* 菜单项样式 */
+.glass-nav a {
+    transition: all 0.2s ease;
+}
+
+.glass-nav a:hover {
+    background: var(--admin-hover);
+}
+
+.glass-nav a.bg-pink-600 {
+    background: var(--admin-active);
+}
+
+/* 按钮样式 */
+.btn-admin-primary {
+    background-color: #db2777;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.btn-admin-primary:hover {
+    background-color: #be185d;
+}
+
+.btn-admin-secondary {
+    background-color: #374151;
+    color: #e5e7eb;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.btn-admin-secondary:hover {
+    background-color: #4b5563;
+}
+
+/* 卡片样式 */
+.card-admin {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
+    padding: 1rem;
+}
+
+/* 表格样式 */
+.table-admin {
+    width: 100%;
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+}
+
+.table-admin th {
+    background-color: #f3f4f6;
+    text-align: left;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    color: #4b5563;
+}
+
+.table-admin td {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.table-admin tr:last-child td {
+    border-bottom: none;
+}
+
+/* 表单样式 */
+.form-input-admin {
+    background-color: #f3f4f6;
+    padding-left: 0.75rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    outline: none;
+}
+
+.form-input-admin:focus {
+    ring: 2px solid #ec4899;
+}
+
+.form-label-admin {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.25rem;
+}
+
+/* 统计卡片样式 */
+.stat-card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.stat-card i {
+    font-size: 1.5rem;
+}
+
+/* 加载动画 */
+.loading-admin {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(236, 72, 153, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--admin-primary);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .hide-mobile {
+        display: none;
+    }
+}

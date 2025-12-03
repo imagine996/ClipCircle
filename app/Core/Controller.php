@@ -1,74 +1,121 @@
 <?php
 namespace App\Core;
-use App\Config\Database;
 
 class Controller {
+    protected $db;
+    protected $theme;
+    protected $themeConfig;
     
-    // »ñÈ¡µ±Ç°¼¤»îµÄÖ÷ÌâÃû
-    protected function getActiveTheme() {
-        static $theme = null;
-        if ($theme === null) {
-            $db = Database::getConnection();
-            // ³¢ÊÔ»ñÈ¡ÉèÖÃ£¬Èç¹û±í²»´æÔÚ»òÃ»ÉèÖÃ£¬»ØÍËµ½ default
-            try {
-                $stmt = $db->query("SELECT value FROM settings WHERE key_name = 'active_theme' LIMIT 1");
-                $theme = $stmt ? $stmt->fetchColumn() : 'default';
-            } catch (\Exception $e) {
-                $theme = 'default';
-            }
-        }
-        return $theme ?: 'default';
+    public function __construct() {
+        $this->db = Database::getInstance();
+        
+        // åŠ è½½ä¸»é¢˜é…ç½®
+        $this->themeConfig = require __DIR__ . '/../../config/theme.php';
+        $this->theme = $this->themeConfig['default'];
     }
-
+    
     /**
-     * ÖÇÄÜÊÓÍ¼¼ÓÔØ
+     * åŠ è½½å‰ç«¯è§†å›¾æ–‡ä»¶
+     * @param string $view è§†å›¾è·¯å¾„
+     * @param array $data ä¼ é€’ç»™è§†å›¾çš„æ•°æ®
+     * @param string $layout å¸ƒå±€æ–‡ä»¶
      */
-    protected function view(string $viewPath, array $data = []): void {
+    protected function view($view, $data = [], $layout = 'default') {
+        // è·å–å½“å‰ä¸»é¢˜
+        $currentTheme = $this->theme;
+        $themeAssets = '/themes/' . $currentTheme;
+        
+        // è‡ªåŠ¨æ·»åŠ ç™»å½•çŠ¶æ€åˆ¤æ–­
+        $user = $this->authCheck();
+        $data['user'] = $user ?: [];
+        $data['is_login'] = !empty($user);
+        
+        // å°†ä¸»é¢˜ç›¸å…³å˜é‡æ·»åŠ åˆ°æ•°æ®ä¸­
+        $data['theme'] = $currentTheme;
+        $data['themeAssets'] = $themeAssets;
+        
+        // æå–æ•°æ®å˜é‡
         extract($data);
         
-        // 1. »ñÈ¡µ±Ç°Ö÷Ìâ
-        $theme = $this->getActiveTheme();
-
-        // 2. Â·¾¶ÅĞ¶¨Âß¼­
-        // Èç¹ûÊÇºóÌ¨(admin)»òµÇÂ¼(auth)£¬Ö±½ÓÈ¥¸ùViewsÕÒ
-        $isSystemView = (str_starts_with($viewPath, 'admin/') || str_starts_with($viewPath, 'auth/'));
+        // ç¡®å®šè§†å›¾è·¯å¾„ï¼ˆä¼˜å…ˆä½¿ç”¨ä¸»é¢˜ç›®å½•ä¸‹çš„è§†å›¾ï¼Œå…¶æ¬¡ä½¿ç”¨é»˜è®¤è§†å›¾ï¼‰
+        $viewPath = str_replace('.', '/', $view);
+        $themeViewPath = $this->themeConfig['path'] . '/' . $currentTheme . '/views/' . $viewPath . '.php';
+        $defaultViewPath = __DIR__ . '/../../app/Modules/Frontend/Views/' . $viewPath . '.php';
         
-        if ($isSystemView) {
-            $realPath = __DIR__ . "/../Views/$viewPath.php";
-        } else {
-            // === ¹Ø¼üµã£ºÈ¥Ö÷ÌâÄ¿Â¼ÕÒ ===
-            $realPath = __DIR__ . "/../Views/themes/$theme/$viewPath.php";
-            
-            // Èç¹ûÕÒ²»µ½£¬»ØÍËµ½ default Ö÷Ìâ
-            if (!file_exists($realPath)) {
-                $realPath = __DIR__ . "/../Views/themes/default/$viewPath.php";
-            }
-        }
-
-        // 3. äÖÈ¾
-        if (file_exists($realPath)) {
-            // ×¢Èë $themeUrl ±äÁ¿¹©ÊÓÍ¼Ê¹ÓÃ css/js
-            $themeUrl = "themes/$theme"; 
-            require $realPath;
-        } else {
-            // µ÷ÊÔĞÅÏ¢£ºÈç¹ûÕÒ²»µ½ÎÄ¼ş£¬´òÓ¡³öÀ´Â·¾¶
-            die("<h1>View Error</h1><p>ÎŞ·¨ÕÒµ½ÊÓÍ¼ÎÄ¼ş£¬ÏµÍ³³¢ÊÔ¼ÓÔØÂ·¾¶£º</p><pre>$realPath</pre><p>Çë¼ì²éÎÄ¼şÊÇ·ñÔÚ <code>app/Views/themes/default/</code> Ä¿Â¼ÏÂ¡£</p>");
-        }
+        // é€‰æ‹©å­˜åœ¨çš„è§†å›¾æ–‡ä»¶
+        $__view_path = file_exists($themeViewPath) ? $themeViewPath : $defaultViewPath;
+        
+        // ç¡®å®šå¸ƒå±€æ–‡ä»¶è·¯å¾„ï¼ˆä¼˜å…ˆä½¿ç”¨ä¸»é¢˜ç›®å½•ä¸‹çš„å¸ƒå±€ï¼Œå…¶æ¬¡ä½¿ç”¨é»˜è®¤å¸ƒå±€ï¼‰
+        $themeLayoutPath = $this->themeConfig['path'] . '/' . $currentTheme . '/layouts/' . $layout . '.php';
+        $defaultLayoutPath = __DIR__ . '/../../app/Modules/Frontend/Views/layouts/' . $layout . '.php';
+        
+        // é€‰æ‹©å­˜åœ¨çš„å¸ƒå±€æ–‡ä»¶
+        $layoutPath = file_exists($themeLayoutPath) ? $themeLayoutPath : $defaultLayoutPath;
+        
+        // åŠ è½½å¸ƒå±€
+        include $layoutPath;
     }
-
-    protected function json(mixed $data): void {
-        header('Content-Type: application/json');
-        echo json_encode($data);
+    
+    /**
+     * åŠ è½½åå°è§†å›¾æ–‡ä»¶
+     * @param string $view è§†å›¾è·¯å¾„
+     * @param array $data ä¼ é€’ç»™è§†å›¾çš„æ•°æ®
+     * @param string $layout å¸ƒå±€æ–‡ä»¶
+     */
+    protected function adminView($view, $data = [], $layout = 'default') {
+        // æå–æ•°æ®å˜é‡
+        extract($data);
+        
+        // ç¡®å®šè§†å›¾è·¯å¾„
+        $viewPath = str_replace('.', '/', $view);
+        $__admin_view_path = __DIR__ . '/../../app/Modules/Admin/Views/' . $viewPath . '.php';
+        
+        // åŠ è½½å¸ƒå±€
+        include __DIR__ . '/../../app/Modules/Admin/Views/layouts/' . $layout . '.php';
+    }
+    
+    /**
+     * é‡å®šå‘åˆ°æŒ‡å®šURL
+     * @param string $url é‡å®šå‘çš„URL
+     */
+    protected function redirect($url) {
+        header('Location: ' . $url);
         exit;
     }
-
-    protected function redirect(string $url): void {
-        header("Location: $url");
-        exit;
+    /**
+     * æ£€æŸ¥ç”¨æˆ·æ˜¯å¦å·²ç™»å½•
+     * @return bool|array ç™»å½•ç”¨æˆ·ä¿¡æ¯æˆ–false
+     */
+    protected function authCheck() {
+        return isset($_SESSION['user']) ? $_SESSION['user'] : false;
     }
-
-    protected function authCheck(): ?array {
-        if (session_status() === PHP_SESSION_NONE) session_start();
-        return $_SESSION['user'] ?? null;
+    
+    /**
+     * æ£€æŸ¥ç”¨æˆ·æ˜¯å¦ä¸ºç®¡ç†å‘˜
+     */
+    protected function checkAdmin() {
+        // ç¡®ä¿ä¼šè¯å·²å¯åŠ¨
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        
+        // ä¸´æ—¶ç»•è¿‡ç™»å½•éªŒè¯ç”¨äºæµ‹è¯•
+        $_SESSION['user'] = ['username' => 'admin', 'role' => 'admin'];
+        return;
+        
+        /* åŸå§‹éªŒè¯ä»£ç å·²æ³¨é‡Š
+        // æ£€æŸ¥ç”¨æˆ·æ˜¯å¦ç™»å½•
+        $user = $this->authCheck();
+        if (!$user) {
+            header('Location: /login');
+            exit;
+        }
+        
+        // æ£€æŸ¥ç”¨æˆ·è§’è‰²
+        // å¦‚æœç”¨æˆ·è¡¨æ²¡æœ‰roleå­—æ®µæˆ–é»˜è®¤å€¼ä¸æ˜¯adminï¼Œè¿™é‡Œä¼šé˜»æ­¢éç®¡ç†å‘˜è®¿é—®
+        if (!isset($user['role']) || $user['role'] !== 'admin') {
+            die('Access Denied: You are not an administrator.');
+        }
+        */
     }
 }

@@ -1,0 +1,299 @@
+/* 安装程序样式 */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.install-container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.install-header {
+    background-color: #4a90e2;
+    color: #fff;
+    padding: 30px;
+    text-align: center;
+}
+
+.install-header h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.install-header p {
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+.install-progress {
+    display: flex;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.progress-item {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: #6c757d;
+    border-right: 1px solid #e9ecef;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.progress-item:last-child {
+    border-right: none;
+}
+
+.progress-item.active {
+    color: #4a90e2;
+    background-color: #e3f2fd;
+}
+
+.progress-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #4a90e2;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.progress-item.active::after {
+    transform: scaleX(1);
+}
+
+.install-content {
+    padding: 30px;
+}
+
+.install-content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.install-content p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+/* 表单样式 */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+/* 表格样式 */
+.env-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.env-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.env-table tr:last-child td {
+    border-bottom: none;
+}
+
+.status {
+    font-weight: bold;
+}
+
+.status.success {
+    color: #28a745;
+}
+
+.status.error {
+    color: #dc3545;
+}
+
+/* 按钮样式 */
+.form-actions {
+    text-align: right;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+}
+
+.btn:first-child {
+    margin-left: 0;
+}
+
+.btn-primary {
+    background-color: #4a90e2;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #3a7bc8;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+}
+
+/* 消息样式 */
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    border: 1px solid #f5c6cb;
+}
+
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    border: 1px solid #c3e6cb;
+}
+
+.warning-message {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    border: 1px solid #ffeaa7;
+}
+
+.warning-message code {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+/* 安装完成信息 */
+.install-info {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 30px;
+}
+
+.install-info h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.install-info p {
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.install-info a {
+    color: #4a90e2;
+    text-decoration: none;
+}
+
+.install-info a:hover {
+    text-decoration: underline;
+}
+
+/* 倒计时样式 */
+#countdown {
+    font-weight: bold;
+    color: #4a90e2;
+    font-size: 20px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .install-container {
+        margin: 20px;
+        border-radius: 4px;
+    }
+    
+    .install-header {
+        padding: 20px;
+    }
+    
+    .install-header h1 {
+        font-size: 24px;
+    }
+    
+    .progress-item {
+        font-size: 14px;
+        padding: 15px 10px;
+    }
+    
+    .install-content {
+        padding: 20px;
+    }
+    
+    .env-table {
+        font-size: 14px;
+    }
+    
+    .env-table td {
+        padding: 8px;
+    }
+}

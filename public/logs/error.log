@@ -1,0 +1,131 @@
+[03-Dec-2025 10:37:00 PRC] [DEBUG] 准备移动视频文件，临时路径: C:\Windows\Temp\phpDBCE.tmp，目标路径: D:/wwwroot/domo.com/public/uploads/videos/1764729420_692fa24c4644d_妹妹说紫色很有韵味 #甜欲 #扭一扭.mp4
+[03-Dec-2025 10:37:00 PRC] [DEBUG] 准备保存视频信息到数据库: Array
+(
+    [title] => 13
+    [description] => 213213
+    [category] => 生活
+    [user_id] => 1
+    [video_path] => /uploads/videos/1764729420_692fa24c4644d_妹妹说紫色很有韵味 #甜欲 #扭一扭.mp4
+    [cover_path] => /uploads/covers/1764729420_692fa24c82954_oAie2JId9A2xA4BUCgfEihADAmEDwAuFAtj0sA~tplv-dy-resize-walign-adapt-aq_540_q75.jpeg
+    [duration] => 0
+    [views] => 0
+    [likes] => 0
+    [dislikes] => 0
+    [status] => 1
+    [upload_time] => 2025-12-03 10:37:00
+)
+
+[03-Dec-2025 10:37:00 PRC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'category' in 'field list' in D:\wwwroot\domo.com\app\Core\Model.php:67
+Stack trace:
+#0 D:\wwwroot\domo.com\app\Core\Model.php(67): PDOStatement->execute(Array)
+#1 D:\wwwroot\domo.com\app\Modules\Video\Models\Video.php(42): App\Core\Model->create(Array)
+#2 D:\wwwroot\domo.com\app\Modules\Video\Services\VideoService.php(142): App\Modules\Video\Models\Video->createVideo(Array)
+#3 D:\wwwroot\domo.com\app\Modules\Frontend\Controllers\VideoController.php(87): App\Modules\Video\Services\VideoService->uploadVideo(Array, Array, Array)
+#4 [internal function]: App\Modules\Frontend\Controllers\VideoController->doUpload()
+#5 D:\wwwroot\domo.com\app\Core\Router.php(70): call_user_func_array(Array, Array)
+#6 D:\wwwroot\domo.com\app\Core\App.php(21): App\Core\Router->dispatch()
+#7 D:\wwwroot\domo.com\public\index.php(13): App\Core\App->run()
+#8 {main}
+  thrown in D:\wwwroot\domo.com\app\Core\Model.php on line 67
+[03-Dec-2025 11:15:54 PRC] [DEBUG] 开始上传视频，视频数据: Array
+(
+    [title] => 12321
+    [description] => 321213
+    [category] => 娱乐
+    [user_id] => 1
+)
+
+[03-Dec-2025 11:15:54 PRC] [DEBUG] 视频文件: Array
+(
+    [name] => 妹妹说紫色很有韵味 #甜欲 #扭一扭.mp4
+    [full_path] => 妹妹说紫色很有韵味 #甜欲 #扭一扭.mp4
+    [type] => video/mp4
+    [tmp_name] => C:\Windows\Temp\php7887.tmp
+    [error] => 0
+    [size] => 4945074
+)
+
+[03-Dec-2025 11:15:54 PRC] [DEBUG] 封面文件: Array
+(
+    [name] => 
+    [full_path] => 
+    [type] => 
+    [tmp_name] => 
+    [error] => 4
+    [size] => 0
+)
+
+[03-Dec-2025 11:15:54 PRC] [DEBUG] 准备移动视频文件，临时路径: C:\Windows\Temp\php7887.tmp，目标路径: D:/wwwroot/domo.com/public/uploads/videos/1764731754_692fab6a286be_妹妹说紫色很有韵味 #甜欲 #扭一扭.mp4
+[03-Dec-2025 11:15:54 PRC] [DEBUG] 准备保存视频信息到数据库: Array
+(
+    [title] => 12321
+    [description] => 321213
+    [category] => 娱乐
+    [user_id] => 1
+    [video_path] => /uploads/videos/1764731754_692fab6a286be_妹妹说紫色很有韵味 #甜欲 #扭一扭.mp4
+    [cover_path] => /assets/images/default-cover.png
+    [duration] => 0
+    [views] => 0
+    [likes] => 0
+    [dislikes] => 0
+    [status] => 1
+    [upload_time] => 2025-12-03 11:15:54
+)
+
+[03-Dec-2025 11:15:54 PRC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'category' in 'field list' in D:\wwwroot\domo.com\app\Core\Model.php:67
+Stack trace:
+#0 D:\wwwroot\domo.com\app\Core\Model.php(67): PDOStatement->execute(Array)
+#1 D:\wwwroot\domo.com\app\Modules\Video\Models\Video.php(42): App\Core\Model->create(Array)
+#2 D:\wwwroot\domo.com\app\Modules\Video\Services\VideoService.php(142): App\Modules\Video\Models\Video->createVideo(Array)
+#3 D:\wwwroot\domo.com\app\Modules\Frontend\Controllers\VideoController.php(87): App\Modules\Video\Services\VideoService->uploadVideo(Array, Array, Array)
+#4 [internal function]: App\Modules\Frontend\Controllers\VideoController->doUpload()
+#5 D:\wwwroot\domo.com\app\Core\Router.php(70): call_user_func_array(Array, Array)
+#6 D:\wwwroot\domo.com\app\Core\App.php(21): App\Core\Router->dispatch()
+#7 D:\wwwroot\domo.com\public\index.php(13): App\Core\App->run()
+#8 {main}
+  thrown in D:\wwwroot\domo.com\app\Core\Model.php on line 67
+[03-Dec-2025 11:23:06 PRC] [DEBUG] 开始上传视频，视频数据: Array
+(
+    [title] => 12321
+    [description] => 321312321
+    [category] => 生活
+    [user_id] => 1
+)
+
+[03-Dec-2025 11:23:06 PRC] [DEBUG] 视频文件: Array
+(
+    [name] => 妹妹说紫色很有韵味 #甜欲 #扭一扭.mp4
+    [full_path] => 妹妹说紫色很有韵味 #甜欲 #扭一扭.mp4
+    [type] => video/mp4
+    [tmp_name] => C:\Windows\Temp\php11EA.tmp
+    [error] => 0
+    [size] => 4945074
+)
+
+[03-Dec-2025 11:23:06 PRC] [DEBUG] 封面文件: Array
+(
+    [name] => oYGcuBwQErDA7ebFlyEoHov72A1E9AAAIfd5fW~tplv-dy-resize-walign-adapt-aq_540_q75.jpeg
+    [full_path] => oYGcuBwQErDA7ebFlyEoHov72A1E9AAAIfd5fW~tplv-dy-resize-walign-adapt-aq_540_q75.jpeg
+    [type] => image/jpeg
+    [tmp_name] => C:\Windows\Temp\php11FA.tmp
+    [error] => 0
+    [size] => 43054
+)
+
+[03-Dec-2025 11:23:06 PRC] [DEBUG] 准备移动视频文件，临时路径: C:\Windows\Temp\php11EA.tmp，目标路径: D:/wwwroot/domo.com/public/uploads/videos/1764732186_692fad1a9de4d_妹妹说紫色很有韵味 #甜欲 #扭一扭.mp4
+[03-Dec-2025 11:23:06 PRC] [DEBUG] 准备保存视频信息到数据库: Array
+(
+    [title] => 12321
+    [description] => 321312321
+    [user_id] => 1
+    [video_path] => /uploads/videos/1764732186_692fad1a9de4d_妹妹说紫色很有韵味 #甜欲 #扭一扭.mp4
+    [cover] => /uploads/covers/1764732186_692fad1ae8907_oYGcuBwQErDA7ebFlyEoHov72A1E9AAAIfd5fW~tplv-dy-resize-walign-adapt-aq_540_q75.jpeg
+    [duration] => 0
+    [views] => 0
+    [likes] => 0
+    [dislikes] => 0
+    [status] => 1
+    [created_at] => 2025-12-03 11:23:06
+)
+
+[03-Dec-2025 11:23:06 PRC] [DEBUG] 视频上传成功，视频ID: 1
