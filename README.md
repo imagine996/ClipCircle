@@ -35,7 +35,7 @@
     
 <img src="path/to/preview.gif" alt="ClipCircle 视频管理系统功能演示" width="800"/>
 
-**[在这里可以添加一行说明，例如：简洁、高效的前台界面预览。]**
+**[现代化流行的主题界面]**
 
 </div>
 
