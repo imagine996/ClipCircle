@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="assets/logo.png" alt="ClipCircle 视频管理系统 Logo" width="300"/> 
+    <img src="https://github.com/imagine996/Duix.Heygem/blob/main/Gemini_Generated_Image_2amq8v2amq8v2amq.png?raw=true" alt="ClipCircle 视频管理系统 Logo" width="300"/> 
     <br>
     
 # ✨ ClipCircle: 开源模块化短视频聚合平台
