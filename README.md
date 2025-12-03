@@ -31,7 +31,7 @@
 
 <div align="center">
     
-### 👇 在此插入你的项目截图或功能演示 GIF
+### 👇 功能演示 GIF
     
 <img src="https://youke1.picui.cn/s1/2025/12/03/69302021e1903.png" alt="ClipCircle 视频管理系统功能演示" width="800"/>
 
